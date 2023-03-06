@@ -1,9 +1,17 @@
-import React from 'react'
+import React from "react"
 
-export default function User() {
-  return (
-    <div>
-      <h1>Hello Rinkesh</h1>
-    </div>
-  )
+export default class  User extends React.Component{
+      constructor(){
+        super()
+      }
+      render(){
+        return (
+          <button>Click me</button>
+        )
+      }
 }
+
+
+
+
+
