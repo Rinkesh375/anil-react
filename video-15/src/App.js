@@ -3,22 +3,24 @@ import React, { Component } from 'react'
 export default class App extends Component {
   constructor(){
     super()
-    this.state = ({count:1})
-    console.log("Constructor")
+    this.state = {count:1}
+    console.log(this.state.count,"constructor")
   }
-  componentDidUpdate(prePop,preState,snapshot){
-    console.log(preState,snapshot)
-    if(this.state.count<=10){
-      this.setState({count:this.state.count+1})
+  shouldComponentUpdate(){
+    // conditonal re-rendering
+    if(this.state.count<5){
+      console.log(this.state.count,"Should mount")
+      return true;
     }
-    
+    return false;
   }
+  
   render() {
-    console.log("render")
+    console.log(this.state.count,"render")
     return (
       <div className='App'>
-        <h1>{this.state.name}</h1>
-        <button onClick={()=>this.setState({count:this.state.count+1})}>Click</button>
+        <h1>{this.state.count}</h1>
+        <button onClick={()=>this.setState({count:this.state.count+1})}>Increment</button>
       </div>
     )
   }
