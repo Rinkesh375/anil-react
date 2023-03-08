@@ -1,23 +1,24 @@
-import React, { Component } from 'react'
-import Student from './Student'
+import React,{useState,useEffect} from 'react'
 
-export default class App extends Component {
-  constructor(){
-    super()
-    this.state = {show:true}
-    
-  }
-  componentWillUnmount(){
-    console.log("componentWillUnmount")
-  }
+function App() {
+  const [name,setName] = useState("Rinkesh")
+  const [count,setCount] = useState(1)
+/*   useEffect(()=>{
+    console.log("Effect")
+  },[])  */
+
+  useEffect(()=>{
+    console.log("Effect")
+  },[name])
   
-  render() {
-    console.log("render")
-    return (
-      <div className='App'>
-        {this.state.show && <Student show={{show:this.state.show}}/>} 
-        <button onClick={()=>this.setState({show:!this.state.show})}>Hide/Show</button>
-      </div>
-    )
-  }
+  return (
+    <div className='App'>
+      <h1>{name}</h1>
+      <h4>{count}</h4>
+      <button onClick={()=>setName(name==="Rinkesh"?"Rinkesh Bihari":"Rinkesh")}>Change Name</button>
+      <button onClick={()=>setCount(count+1)}>Click</button>
+    </div>
+  )
 }
+
+export default App
