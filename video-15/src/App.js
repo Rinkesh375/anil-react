@@ -3,18 +3,22 @@ import React, { Component } from 'react'
 export default class App extends Component {
   constructor(){
     super()
-    this.state = ({name:"Rinkesh"})
+    this.state = ({count:1})
     console.log("Constructor")
   }
-  componentDidMount(){
-    console.log("Did mount ")
+  componentDidUpdate(prePop,preState,snapshot){
+    console.log(preState,snapshot)
+    if(this.state.count<=10){
+      this.setState({count:this.state.count+1})
+    }
+    
   }
   render() {
     console.log("render")
     return (
       <div className='App'>
         <h1>{this.state.name}</h1>
-        <button onClick={()=>this.setState({name:this.state.name==="Rinkesh"?"karan":"Rinkesh"})}>Click</button>
+        <button onClick={()=>this.setState({count:this.state.count+1})}>Click</button>
       </div>
     )
   }
