@@ -1,26 +1,22 @@
 import React, { Component } from 'react'
+import Student from './Student'
 
 export default class App extends Component {
   constructor(){
     super()
-    this.state = {count:1}
-    console.log(this.state.count,"constructor")
+    this.state = {show:true}
+    
   }
-  shouldComponentUpdate(){
-    // conditonal re-rendering
-    if(this.state.count<5){
-      console.log(this.state.count,"Should mount")
-      return true;
-    }
-    return false;
+  componentWillUnmount(){
+    console.log("componentWillUnmount")
   }
   
   render() {
-    console.log(this.state.count,"render")
+    console.log("render")
     return (
       <div className='App'>
-        <h1>{this.state.count}</h1>
-        <button onClick={()=>this.setState({count:this.state.count+1})}>Increment</button>
+        {this.state.show && <Student show={{show:this.state.show}}/>} 
+        <button onClick={()=>this.setState({show:!this.state.show})}>Hide/Show</button>
       </div>
     )
   }
