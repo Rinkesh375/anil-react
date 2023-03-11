@@ -1,18 +1,20 @@
 
 import './App.css';
 import React,{useRef} from 'react';
+import Child from './Child';
 
 const App = () => {
   const chunnu = useRef()
-  // maniputating any element using useRef function based component
+  // maniputating any element using useRef,forward Ref  from parent to child function based component
   const changeSomething = ()=>{
-    console.log(chunnu.current.value)
-    chunnu.current.style.background = `red`
-    chunnu.current.style.margin = `2rem`
+    chunnu.current.value = "Enter you text here";
+    chunnu.current.style.color = "blue";
+    chunnu.current.style.fontSize = "green";
   }
+
   return (
     <div className='App'>
-      <input type="text" ref={chunnu}/>
+       <Child ref={chunnu}/>
       <button onClick={changeSomething}>Click</button>
     </div>
   );
