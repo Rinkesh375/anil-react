@@ -1,24 +1,27 @@
 
 import './App.css';
-import React,{useState,useMemo} from 'react';
-function App() {
-  const [count,setCount] = useState(1)
-  const [num,setNum] = useState(5)
-  const [value,setValue] = useState(10)
+// import React,{useState,useMemo} from 'react';
 
- const multi  = useMemo(()=>{
-    console.log("One is run")
-    return num*num
-  },[count]);
-  return (
-    <div className="App">
-      <h1>{multi}</h1>
-      <h2>{count}</h2>
-      <h3>{value}</h3>
-      <button onClick={()=>setCount(count+1)}>Count</button>
-      <button onClick={()=>setValue(value*value)}>Value</button>
-    </div>
-  );
+import React, { Component,createRef } from 'react'
+
+export default class App extends Component {
+  constructor(){
+    super();
+    this.inputRef = createRef()
+  }
+  // get property and value of input using ref
+  getData(){
+    // console.log("CHunnu")
+      this.inputRef.current.style.padding = "1rem"
+      this.inputRef.current.style.background = "blue"
+     console.log(this.inputRef.current.value)
+  }
+  render() {
+    return (
+      <div className='App'>
+        <input type="text" ref={this.inputRef} />
+        <button onClick={()=>this.getData()}>Click</button>
+      </div>
+    )
+  }
 }
-
-export default App;
