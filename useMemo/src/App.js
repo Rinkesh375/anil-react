@@ -1,27 +1,21 @@
 
 import './App.css';
-// import React,{useState,useMemo} from 'react';
+import React,{useRef} from 'react';
 
-import React, { Component,createRef } from 'react'
-
-export default class App extends Component {
-  constructor(){
-    super();
-    this.inputRef = createRef()
+const App = () => {
+  const chunnu = useRef()
+  // maniputating any element using useRef function based component
+  const changeSomething = ()=>{
+    console.log(chunnu.current.value)
+    chunnu.current.style.background = `red`
+    chunnu.current.style.margin = `2rem`
   }
-  // get property and value of input using ref
-  getData(){
-    // console.log("CHunnu")
-      this.inputRef.current.style.padding = "1rem"
-      this.inputRef.current.style.background = "blue"
-     console.log(this.inputRef.current.value)
-  }
-  render() {
-    return (
-      <div className='App'>
-        <input type="text" ref={this.inputRef} />
-        <button onClick={()=>this.getData()}>Click</button>
-      </div>
-    )
-  }
+  return (
+    <div className='App'>
+      <input type="text" ref={chunnu}/>
+      <button onClick={changeSomething}>Click</button>
+    </div>
+  );
 }
+
+export default App;
