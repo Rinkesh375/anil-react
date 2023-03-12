@@ -1,62 +1,24 @@
 
 import './App.css';
+
 import React,{useState} from 'react';
+import Home from "./component/Home.jsx"
+import About from './component/About';
+import { BrowserRouter, Route, Routes } from "react-router-dom";
+
 
 const App = () => {
   return (
-    <>
-      <div className='App'>
-        <ColorChangeRed hoc={Counter}/>
-        <ColorChangeGreen Hoc={Counter}/>
-        <ColorChangeBlue Hoc={Counter}/>
-      </div>
-    </>
-  
+  <>
+    <BrowserRouter>
+    <Routes>
+      <Route exact path="/" element={<Home />} />
+      <Route exact path='/about' element={<About/>} />
+    </Routes>
+    </BrowserRouter>
+  </>
   );
 }
-const ColorChangeRed = (props)=>{
-  return (
-     <div style={{background:"red"}}>
-        <props.hoc/>
-    </div>
-  )
-}
-
-const ColorChangeGreen = ({Hoc})=>{
-
-
-  return (
-
-     <div style={{background:"green"}}>
-          <Hoc/>
-    </div>
-  )
-}
-
-const ColorChangeBlue = ({Hoc})=>{
-
-
-  return (
-
-     <div style={{background:"blue"}}>
-          <Hoc/>
-    </div>
-  )
-}
-
-
-const Counter = () => {
-  const[count,setCount] = useState(1)
-  return (
-    <>
-    <h1>{count}</h1>
-    <button onClick={()=>setCount(count+1)}>Click</button>
-    </>
-  
-  );
-}
-
-
 
 export default App;
 
