@@ -1,23 +1,62 @@
 
 import './App.css';
-import React,{useRef} from 'react';
-import Child from './Child';
+import React,{useState} from 'react';
 
 const App = () => {
-  const chunnu = useRef()
-  // maniputating any element using useRef,forward Ref  from parent to child function based component
-  const changeSomething = ()=>{
-    chunnu.current.value = "Enter you text here";
-    chunnu.current.style.color = "blue";
-    chunnu.current.style.fontSize = "green";
-  }
+  return (
+    <>
+      <div className='App'>
+        <ColorChangeRed hoc={Counter}/>
+        <ColorChangeGreen Hoc={Counter}/>
+        <ColorChangeBlue Hoc={Counter}/>
+      </div>
+    </>
+  
+  );
+}
+const ColorChangeRed = (props)=>{
+  return (
+     <div style={{background:"red"}}>
+        <props.hoc/>
+    </div>
+  )
+}
+
+const ColorChangeGreen = ({Hoc})=>{
+
 
   return (
-    <div className='App'>
-       <Child ref={chunnu}/>
-      <button onClick={changeSomething}>Click</button>
+
+     <div style={{background:"green"}}>
+          <Hoc/>
     </div>
+  )
+}
+
+const ColorChangeBlue = ({Hoc})=>{
+
+
+  return (
+
+     <div style={{background:"blue"}}>
+          <Hoc/>
+    </div>
+  )
+}
+
+
+const Counter = () => {
+  const[count,setCount] = useState(1)
+  return (
+    <>
+    <h1>{count}</h1>
+    <button onClick={()=>setCount(count+1)}>Click</button>
+    </>
+  
   );
 }
 
+
+
 export default App;
+
